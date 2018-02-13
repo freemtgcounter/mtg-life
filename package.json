@@ -1,31 +1,19 @@
 {
-  "name": "mtg-life",
-  "version": "1.0.0",
-  "description": "MTG Life Counter",
-  "main": "main.js",
+  "name": "create-react-app-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.1"
+  },
   "scripts": {
-    "start": "http-server ./ -p 8088",
-    "webpack": "webpack",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://teh-grza@github.com/teh-grza/mtg-life.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/teh-grza/mtg-life/issues"
-  },
-  "homepage": "https://teh-grza.github.io/mtg-life",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-es2015": "^6.24.1",
-    "http-server": "^0.11.1",
-    "webpack": "^3.11.0"
-  }
+  "homepage": "https://teh-grza.github.io/mtg-life"
 }
