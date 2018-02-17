@@ -23,6 +23,10 @@ class App extends Component {
     this.setState({ player_count: this.state.player_count + 1 });
   }
 
+  removePlayer() {
+    this.setState({ player_count: this.state.player_count - 1 });
+  }
+
   render() {
     const players = [];
     for(let i = 0; i < this.state.player_count; i++) {
@@ -35,7 +39,7 @@ class App extends Component {
           <button onClick={() => this.newGame()}>New Game</button>
           <button onClick={() => this.newEdh()}>New Edh</button>
           <button onClick={() => this.addPlayer()}>Add Player</button>
-          <button onClick={() => this.RemovePlayer()}>Remove Player</button>
+          <button onClick={() => this.removePlayer()}>Remove Player</button>
         </header>
 
         {players}
