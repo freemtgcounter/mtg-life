@@ -6,17 +6,16 @@ class Player extends React.Component {
     this.state = {
       life_total: this.props.life_total || 20,
       poison_counters: this.props.poison_counters || 0,
-      history: [],
-      future: []
+      history: []
     }
   }
 
   componentWillReceiveProps(newProps) {
+    // parent will reset these props for a new game, so history is cleared
     this.setState({
       life_total: newProps.life_total,
-      poison_counters: newProps.poison_counters,
-      history: [],
-      future: []
+      poison_counters: 0,
+      history: []
     });
   }
 
