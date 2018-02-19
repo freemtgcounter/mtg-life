@@ -40,8 +40,9 @@ class App extends Component {
           <button onClick={() => this.addPlayer()}>Add Player</button>
           <button onClick={() => this.removePlayer()}>Remove Player</button>
         </header>
-
-        {players}
+        <section id="players">
+          {players}
+        </section>
 
       </div>
     );

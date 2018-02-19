@@ -1,3 +1,43 @@
-* {
-  color: red!important;
+
+
+$transparent_background: rgba(255,255,255,.4);
+
+#players {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.player {
+  flex-basis: 38rem;
+
+  .background-pane {
+    padding: 3rem;
+  }
+
+  button {
+    background: $transparent_background;
+  }
+
+  input {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    background: $transparent_background;
+    border: solid 1px transparent;
+    &:focus {
+      border: dotted 1px grey;
+    }
+  }
+}
+
+.poison_count {
+  display: inline-block;
+  min-width: 3em;
+  padding: 0 .5em;
+  .poison {
+    position: relative;
+    left: .35em;
+    top: .3em;
+  }
 }

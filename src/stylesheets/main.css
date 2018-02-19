@@ -1,2 +1,43 @@
 @import url(vendor/normalize.css);
 @import url(vendor/skeleton.css);
+@import url(vendor/mana.css);
+body {
+  text-align: center; }
+
+header {
+  padding: 3rem; }
+
+#players {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap; }
+
+.player {
+  flex-basis: 38rem; }
+  .player .background-pane {
+    padding: 3rem; }
+  .player button {
+    background: rgba(255, 255, 255, 0.4); }
+  .player input {
+    width: 100%;
+    text-align: center;
+    font-size: 2em;
+    background: rgba(255, 255, 255, 0.4);
+    border: solid 1px transparent; }
+    .player input:focus {
+      border: dotted 1px grey; }
+
+.poison_count {
+  display: inline-block;
+  min-width: 3em;
+  padding: 0 .5em; }
+  .poison_count .poison {
+    position: relative;
+    left: .35em;
+    top: .3em; }
+
+.neutral {
+  background-color: transparent; }
+
+.orange {
+  background: orange; }

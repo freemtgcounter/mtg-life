@@ -1,4 +1,5 @@
 import React from 'react';
+import BackgroundSelector from "./BackgroundSelector";
 
 class Player extends React.Component {
   constructor(props) {
@@ -6,6 +7,7 @@ class Player extends React.Component {
     this.state = {
       life_total: this.props.life_total || 20,
       poison_counters: this.props.poison_counters || 0,
+      background_class: "background-pane neutral",
       history: []
     }
   }
@@ -35,12 +37,19 @@ class Player extends React.Component {
     });
   };
 
+  setBackground = (bgClass) => {
+    this.setState({
+      background_class: "background-pane "+bgClass
+    });
+  };
+
   render() {
     const history_list = this.state.history.map((history_step) =>
       <p>({history_step.old_life}) {history_step.life_event > 0 ? "+" : ""}{history_step.life_event}</p>
     );
     return (
       <div className="player">
+        <div className={this.state.background_class}>
           <input type="string" placeholder="player" />
           <h1>{this.state.life_total}</h1>
           <section className="life_buttons">
@@ -51,10 +60,12 @@ class Player extends React.Component {
           </section>
           <section className="life_buttons">
             <button onClick={this.adjustPoisonCounters(-1)}>-1</button>
-            <span className="poison_count">{this.state.poison_counters}</span>
+            <span className="poison_count">{this.state.poison_counters}<span className="mana poison"></span></span>
             <button onClick={this.adjustPoisonCounters(1)}>+1</button>
           </section>
+          <BackgroundSelector callbackToParent={this.setBackground} />
           <section className="player_log">{history_list}</section>
+        </div>
       </div>
     )
   }
