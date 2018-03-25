@@ -2,7 +2,8 @@
 
 .black {
   background: black;
-  h1 {color: #eee;}
+  h1,p {color: #eee;}
+  .poison {background-color: green;}
 }
 .blue { background: linear-gradient(to bottom, #89beff 0%, #005fa8 100%);}
 .green { background: linear-gradient(to bottom, #c9de96 0%, #8ab66b 44%, #398235 100%);}

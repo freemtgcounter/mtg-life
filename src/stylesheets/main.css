@@ -103,8 +103,10 @@ header {
 
 .black {
   background: black; }
-  .black h1 {
+  .black h1, .black p {
     color: #eee; }
+  .black .poison {
+    background-color: green; }
 
 .blue {
   background: linear-gradient(to bottom, #89beff 0%, #005fa8 100%); }
