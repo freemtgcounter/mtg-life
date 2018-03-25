@@ -2,27 +2,89 @@
 @import url(vendor/skeleton.css);
 @import url(vendor/mana.css);
 body {
-  text-align: center; }
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: #f0f0f0; }
+  body h1 {
+    font-size: 2.6rem; }
+  body h2 {
+    font-size: 2rem; }
+  body h3, body h4, body h5, body h6, body p {
+    font-size: 1rem; }
+
+* {
+  box-sizing: border-box; }
+
+button {
+  padding: .2em 1em; }
+
+.App {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  overflow-y: hidden; }
+
+.pages {
+  position: relative; }
+
+.app-controls {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: #eee; }
 
 header {
-  padding: 3rem; }
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr; }
+  header button {
+    margin-bottom: 0; }
 
 #players {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap; }
+  margin: 0 auto;
+  flex-wrap: nowrap;
+  overflow-x: auto; }
 
 .player {
-  flex-basis: 38rem; }
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  padding-top: .3rem;
+  min-width: 18rem; }
+  .player + .player {
+    border-left: solid 1px rgba(155, 155, 155, 0.7); }
+  .pcount-1 .player {
+    width: 100vw; }
+  .pcount-2 .player {
+    width: 50vw; }
+  .player h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    margin-bottom: .4rem; }
+  .player .player_log {
+    overflow-y: auto; }
+    .player .player_log p {
+      font-size: 1.3rem;
+      margin-bottom: .3rem; }
   .player .background-pane {
-    padding: 3rem; }
+    padding-top: .5rem;
+    border: dotted 1px #ccc; }
+  @media (min-width: 500px) {
+    .player {
+      margin-right: 0; } }
   .player button {
-    background: rgba(255, 255, 255, 0.4); }
+    background: rgba(255, 255, 255, 0.6); }
   .player input {
     width: 100%;
     text-align: center;
-    font-size: 2em;
-    background: rgba(255, 255, 255, 0.4);
+    font-size: 2.3rem;
+    padding: .1rem;
+    margin: 0 0 .2rem;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.6);
     border: solid 1px transparent; }
     .player input:focus {
       border: dotted 1px grey; }
@@ -39,5 +101,19 @@ header {
 .neutral {
   background-color: transparent; }
 
-.orange {
-  background: orange; }
+.black {
+  background: black; }
+  .black h1 {
+    color: #eee; }
+
+.blue {
+  background: linear-gradient(to bottom, #89beff 0%, #005fa8 100%); }
+
+.green {
+  background: linear-gradient(to bottom, #c9de96 0%, #8ab66b 44%, #398235 100%); }
+
+.red {
+  background: linear-gradient(to bottom, #ffaaaa 0%, red 100%); }
+
+.white {
+  background: white; }

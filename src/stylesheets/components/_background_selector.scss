@@ -1,3 +1,10 @@
 .neutral {background-color: transparent;}
 
-.orange {background: orange;}
+.black {
+  background: black;
+  h1 {color: #eee;}
+}
+.blue { background: linear-gradient(to bottom, #89beff 0%, #005fa8 100%);}
+.green { background: linear-gradient(to bottom, #c9de96 0%, #8ab66b 44%, #398235 100%);}
+.red { background: linear-gradient(to bottom, #ffaaaa 0%, red 100%);}
+.white {background: white;}

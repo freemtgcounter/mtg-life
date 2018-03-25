@@ -1,18 +1,48 @@
 
-
-$transparent_background: rgba(255,255,255,.4);
+$transparent_background: rgba(255,255,255,.6);
 
 #players {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  margin: 0 auto;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .player {
-  flex-basis: 38rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  padding-top: .3rem;
+
+  .player + & {
+    border-left: solid 1px rgba(155,155,155,.7);
+  }
+
+  min-width: 18rem;
+  .pcount-1 & {width: 100vw;}
+  .pcount-2 & {width: 50vw;}
+
+  h1 {
+    font-size: 5rem;
+    font-weight: bold;
+    margin-bottom: .4rem;
+  }
+
+  .player_log {
+    overflow-y: auto;
+    p {
+      font-size: 1.3rem;
+      margin-bottom: .3rem;
+    }
+  }
 
   .background-pane {
-    padding: 3rem;
+    padding-top: .5rem;
+    border: dotted 1px #ccc;
+  }
+
+  @include breakpoint(medium) {
+    margin-right: 0;
   }
 
   button {
@@ -22,7 +52,10 @@ $transparent_background: rgba(255,255,255,.4);
   input {
     width: 100%;
     text-align: center;
-    font-size: 2em;
+    font-size: 2.3rem;
+    padding: .1rem;
+    margin: 0 0 .2rem;
+    justify-content: space-between;
     background: $transparent_background;
     border: solid 1px transparent;
     &:focus {

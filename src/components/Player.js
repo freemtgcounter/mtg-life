@@ -7,7 +7,7 @@ class Player extends React.Component {
     this.state = {
       life_total: this.props.life_total || 20,
       poison_counters: this.props.poison_counters || 0,
-      background_class: "background-pane neutral",
+      background_class: "player background-pane neutral",
       history: []
     }
   }
@@ -39,7 +39,7 @@ class Player extends React.Component {
 
   setBackground = (bgClass) => {
     this.setState({
-      background_class: "background-pane "+bgClass
+      background_class: "player background-pane "+bgClass
     });
   };
 
@@ -48,25 +48,25 @@ class Player extends React.Component {
       <p>({history_step.old_life}) {history_step.life_event > 0 ? "+" : ""}{history_step.life_event}</p>
     );
     return (
-      <div className="player">
         <div className={this.state.background_class}>
-          <input type="string" placeholder="player" />
-          <h1>{this.state.life_total}</h1>
-          <section className="life_buttons">
-            <button onClick={this.adjustLifeTotal(-5)}>-5</button>
-            <button onClick={this.adjustLifeTotal(-1)}>-1</button>
-            <button onClick={this.adjustLifeTotal(1)}>+1</button>
-            <button onClick={this.adjustLifeTotal(5)}>+5</button>
-          </section>
-          <section className="life_buttons">
-            <button onClick={this.adjustPoisonCounters(-1)}>-1</button>
-            <span className="poison_count">{this.state.poison_counters}<span className="mana poison"></span></span>
-            <button onClick={this.adjustPoisonCounters(1)}>+1</button>
-          </section>
-          <BackgroundSelector callbackToParent={this.setBackground} />
-          <section className="player_log">{history_list}</section>
+          <div className="player_info">
+            <input type="string" placeholder="player" />
+            <h1>{this.state.life_total}</h1>
+            <section className="life_buttons">
+              <button onClick={this.adjustLifeTotal(-5)}>-5</button>
+              <button onClick={this.adjustLifeTotal(-1)}>-1</button>
+              <button onClick={this.adjustLifeTotal(1)}>+1</button>
+              <button onClick={this.adjustLifeTotal(5)}>+5</button>
+            </section>
+            <section className="life_buttons">
+              <button onClick={this.adjustPoisonCounters(-1)}>-1</button>
+              <span className="poison_count">{this.state.poison_counters}<span className="mana poison"></span></span>
+              <button onClick={this.adjustPoisonCounters(1)}>+1</button>
+            </section>
+            <BackgroundSelector callbackToParent={this.setBackground} />
+          </div>
+          <section className="player_log">{history_list.reverse()}</section>
         </div>
-      </div>
     )
   }
 }

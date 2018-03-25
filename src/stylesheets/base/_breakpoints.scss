@@ -1,0 +1,14 @@
+@mixin breakpoint($point) {
+  @if $point == landscape {
+    @media (orientation: landscape) { @content ;}
+  }
+  @if $point == medium {
+    @media (min-width: 500px)  { @content ; }
+  }
+  @else if $point == large {
+    @media (min-width: 1000px)  { @content ; }
+  }
+  @else if $point == xlarge {
+    @media (min-width: 2000px)  { @content ; }
+  }
+}

@@ -12,16 +12,24 @@ class BackgroundSelector extends React.Component {
           value: 'neutral',
         },
         {
-          title: 'Orange',
-          value: 'orange',
+          title: 'black',
+          value: 'black',
         },
         {
-          title: 'B',
-          value: 'b',
+          title: 'blue',
+          value: 'blue',
         },
         {
-          title: 'C',
-          value: 'c',
+          title: 'green',
+          value: 'green',
+        },
+        {
+          title: 'red',
+          value: 'red',
+        },
+        {
+          title: 'white',
+          value: 'white',
         },
       ],
     };

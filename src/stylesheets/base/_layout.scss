@@ -1,0 +1,45 @@
+body {
+  text-align: center;
+  position: relative;
+  overflow:hidden;
+  background: #f0f0f0;
+
+  h1 {                    font-size: 2.6rem;  }
+  h2 {                    font-size: 2rem;  }
+  h3, h4, h5, h6, p {     font-size: 1rem;  }
+
+}
+
+* {box-sizing: border-box;}
+
+button {
+  padding: .2em 1em;
+}
+
+.App {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  overflow-y:hidden;
+}
+
+.pages {
+  position: relative;
+}
+
+.app-controls {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  background: #eee;
+}
+
+header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  button {
+    margin-bottom: 0;
+  }
+}
