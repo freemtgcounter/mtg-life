@@ -1,9 +1,15 @@
-.neutral {background-color: transparent;}
+.neutral {background: linear-gradient(to bottom, #d0d0d0 0%, #f3f3f3 20%);}
 
+//.black
 .black {
-  background: black;
-  h1,p {color: #eee;}
-  .poison {background-color: green;}
+  background: linear-gradient(to bottom, black 0%, #333339 70%), url('../images/pic-swamp.png');
+  background-size: cover;
+  background-blend-mode: hard-light;
+  input {background: #444; z-index: 100; mix-blend-mode: luminosity;}
+
+  .poison_count, h1,p {color: #eee;}
+  .poison {background-color: greenyellow; }
+  .mana.large { display: block; background-position: 66.6% 33.3%; opacity: .14; z-index: 1; mix-blend-mode: exclusion;}
 }
 .blue { background: linear-gradient(to bottom, #89beff 0%, #005fa8 100%);}
 .green { background: linear-gradient(to bottom, #c9de96 0%, #8ab66b 44%, #398235 100%);}
