@@ -49,6 +49,7 @@ class Player extends React.Component {
     );
     return (
         <div className={this.state.background_class}>
+        <div className="mana large"></div>
           <div className="player_info">
             <input type="string" placeholder="player" />
             <h1>{this.state.life_total}</h1>
@@ -58,7 +59,7 @@ class Player extends React.Component {
               <button onClick={this.adjustLifeTotal(1)}>+1</button>
               <button onClick={this.adjustLifeTotal(5)}>+5</button>
             </section>
-            <section className="life_buttons">
+            <section className="poison_buttons">
               <button onClick={this.adjustPoisonCounters(-1)}>-1</button>
               <span className="poison_count">{this.state.poison_counters}<span className="mana poison"></span></span>
               <button onClick={this.adjustPoisonCounters(1)}>+1</button>
