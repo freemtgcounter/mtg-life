@@ -31,6 +31,10 @@ class BackgroundSelector extends React.Component {
           title: 'white',
           value: 'white',
         },
+        {
+          title: 'colorless',
+          value: 'colorless',
+        },
       ],
     };
   };

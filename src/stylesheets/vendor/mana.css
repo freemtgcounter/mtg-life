@@ -22,10 +22,10 @@
 }
 .mana.large {
     display: none;
-    height: 50vw;
-    width: 50vw;
+    height: 20rem;
+    width: 20rem;
     position: absolute;
-    top: 33%;
+    top: 35rem;
     pointer-events: none;
 }
 .mana.s0 { background-position: 0 0; }

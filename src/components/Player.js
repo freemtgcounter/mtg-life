@@ -51,7 +51,7 @@ class Player extends React.Component {
         <div className={this.state.background_class}>
         <div className="mana large"></div>
           <div className="player_info">
-            <input type="string" placeholder="player" />
+            <input type="string" placeholder="player" className="player_name" />
             <h1>{this.state.life_total}</h1>
             <section className="life_buttons">
               <button onClick={this.adjustLifeTotal(-5)}>-5</button>
@@ -66,6 +66,24 @@ class Player extends React.Component {
             </section>
             <BackgroundSelector callbackToParent={this.setBackground} />
           </div>
+          <section className="edh_damage">
+            <div className="edh_player">
+              <div className="edh_player-name">Gustrodamus</div>
+              <div className="edh_player-dmg">
+                <button>-1</button>
+                <span className="edh_player-dmg-count">10</span>
+                <button>+1</button>
+              </div>
+            </div>
+            <div className="edh_player">
+              <div className="edh_player-name">Gustrodamus</div>
+              <div className="edh_player-dmg">
+                <button>-1</button>
+                <span className="edh_player-dmg-count">10</span>
+                <button>+1</button>
+              </div>
+            </div>
+          </section>
           <section className="player_log">{history_list.reverse()}</section>
         </div>
     )
