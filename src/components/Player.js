@@ -1,7 +1,9 @@
 import React from 'react';
-import BackgroundSelector from "./BackgroundSelector";
+import { connect } from "react-redux";
+//import BackgroundSelector from "./BackgroundSelector";
 
 class Player extends React.Component {
+/*
   constructor(props) {
     super(props);
     this.state = {
@@ -11,16 +13,8 @@ class Player extends React.Component {
       history: []
     }
   }
-
-  componentWillReceiveProps(newProps) {
-    // parent will reset these props for a new game, so history is cleared
-    this.setState({
-      life_total: newProps.life_total,
-      poison_counters: 0,
-      history: []
-    });
-  }
-
+  */
+/*
   adjustLifeTotal = param => e => {
     const old_life = this.state.life_total
     const new_life = old_life + param
@@ -42,12 +36,19 @@ class Player extends React.Component {
       background_class: "player background-pane "+bgClass
     });
   };
-
+*/
   render() {
+    /*
     const history_list = this.state.history.map((history_step) =>
       <p>({history_step.old_life}) {history_step.life_event > 0 ? "+" : ""}{history_step.life_event}</p>
     );
+    */
     return (
+      <section>
+        <h4>{this.props.player.name}</h4>
+        <p>{this.props.player.id}</p>
+      </section>
+      /*
         <div className={this.state.background_class}>
         <div className="mana large"></div>
           <div className="player_info">
@@ -86,8 +87,14 @@ class Player extends React.Component {
           </section>
           <section className="player_log">{history_list.reverse()}</section>
         </div>
+      */
     )
   }
 }
 
-export default Player;
+const mapStateToProps = state => {
+  const reduxState = state;
+  return { reduxState };
+};
+
+export default connect(mapStateToProps)(Player);
