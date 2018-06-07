@@ -38,27 +38,29 @@ button {
   background: #eee; }
 
 header {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr; }
-  header button {
-    margin-bottom: 0; }
+  display: flex;
+  flex-direction: row;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  max-width: 100vw; }
 
 #players {
   display: flex;
   margin: 0 auto;
   flex-wrap: nowrap;
-  overflow-x: auto; }
+  overflow-x: auto;
+  margin: 45px auto 0; }
 
 .player {
   position: relative;
   display: grid;
   grid-template-rows: auto auto 1fr;
-  height: 100vh;
-  min-width: 20rem;
-  max-width: 40rem; }
-  .player + .player {
-    border-left: solid 1px rgba(155, 155, 155, 0.7); }
+  height: calc(100vh - 60px);
+  min-width: 30rem;
+  max-width: 90rem;
+  width: calc(100vw * (1/5)); }
   .pcount-1 .player {
     width: 100vw; }
   .pcount-2 .player {
@@ -67,12 +69,15 @@ header {
     width: calc(100vw * (1/3)); }
   .pcount-4 .player {
     width: calc(100vw * (1/4)); }
-  .pcount-5 .player {
-    width: calc(100vw * (1/5)); }
+  .player + .player {
+    border-left: solid 1px rgba(155, 155, 155, 0.7); }
   .player h1 {
     font-size: 6rem;
     font-weight: bold;
     margin-bottom: .4rem; }
+  .player .player_info {
+    max-width: 40rem;
+    margin: 0 auto; }
   .player .player_log {
     overflow-y: auto; }
     .player .player_log p {

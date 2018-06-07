@@ -1,59 +1,69 @@
 import React from 'react';
 import { connect } from "react-redux";
-//import BackgroundSelector from "./BackgroundSelector";
+import { updatePlayer, removePlayer } from "../redux/actions/player"
+import BackgroundSelector from "./BackgroundSelector";
 
 class Player extends React.Component {
-/*
-  constructor(props) {
-    super(props);
-    this.state = {
-      life_total: this.props.life_total || 20,
-      poison_counters: this.props.poison_counters || 0,
-      background_class: "player background-pane neutral",
-      history: []
-    }
+
+  handleChange = (e) => {
+    this.setState({inputValue: e.target.value});
   }
-  */
-/*
+
   adjustLifeTotal = param => e => {
-    const old_life = this.state.life_total
+    const old_life = this.props.player.life_total
     const new_life = old_life + param
-    const life_object = { old_life: this.state.life_total, life_event: param }
-    this.setState({
-      life_total: new_life,
-      history: [...this.state.history, life_object]
-    });
+    const life_object = { old_life: this.props.player.life_total, life_event: param }
+    this.props.dispatch(updatePlayer( this.props.player.id,
+      {
+        life_total: new_life,
+        history: [...this.props.player.history, life_object]
+      }
+    ));
   };
 
   adjustPoisonCounters = param => e => {
-    this.setState({
-      poison_counters: this.state.poison_counters + param
-    });
+    const old_life = this.props.player.poison_counters
+    const new_life = old_life + param
+    const life_object = { old_life: this.props.player.poison_counters+"*", life_event: param+"*" }
+    this.props.dispatch(updatePlayer( this.props.player.id,
+      {
+        poison_counters: new_life,
+        history: [...this.props.player.history, life_object]
+      }
+    ));
   };
 
-  setBackground = (bgClass) => {
-    this.setState({
-      background_class: "player background-pane "+bgClass
-    });
+  onNameChange = (e) => {
+    this.props.dispatch(updatePlayer( this.props.player.id,
+      { name: e.target.value }
+    ));
   };
-*/
+
+  removePlayer = (e) => {
+    this.props.dispatch(removePlayer(this.props.player.id));
+  }
+
+  setBackground = (bgClass) => {
+    console.log(bgClass);
+    this.props.dispatch(updatePlayer( this.props.player.id,
+      {
+        background_class: "player background-pane "+bgClass
+      }
+    ));
+  };
+
   render() {
-    /*
-    const history_list = this.state.history.map((history_step) =>
+    const history_list = this.props.player.history.map((history_step) =>
       <p>({history_step.old_life}) {history_step.life_event > 0 ? "+" : ""}{history_step.life_event}</p>
     );
-    */
+
     return (
-      <section>
-        <h4>{this.props.player.name}</h4>
-        <p>{this.props.player.id}</p>
-      </section>
-      /*
-        <div className={this.state.background_class}>
-        <div className="mana large"></div>
+        <div className={this.props.player.background_class}>
+          <div className="mana large"></div>
           <div className="player_info">
-            <input type="string" placeholder="player" className="player_name" />
-            <h1>{this.state.life_total}</h1>
+            <input type="string" placeholder="player" className="player_name" value={this.props.player.name} onChange={this.onNameChange}/>
+            <button onClick={this.removePlayer}>x</button>
+            <h1>{this.props.player.life_total}</h1>
             <section className="life_buttons">
               <button onClick={this.adjustLifeTotal(-5)}>-5</button>
               <button onClick={this.adjustLifeTotal(-1)}>-1</button>
@@ -62,7 +72,7 @@ class Player extends React.Component {
             </section>
             <section className="poison_buttons">
               <button onClick={this.adjustPoisonCounters(-1)}>-1</button>
-              <span className="poison_count">{this.state.poison_counters}<span className="mana poison"></span></span>
+              <span className="poison_count">{this.props.player.poison_counters}<span className="mana poison"></span></span>
               <button onClick={this.adjustPoisonCounters(1)}>+1</button>
             </section>
             <BackgroundSelector callbackToParent={this.setBackground} />
@@ -87,7 +97,6 @@ class Player extends React.Component {
           </section>
           <section className="player_log">{history_list.reverse()}</section>
         </div>
-      */
     )
   }
 }

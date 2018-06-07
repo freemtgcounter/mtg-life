@@ -1,23 +1,43 @@
-import { ADD_PLAYER } from "../actions/player";
+import { ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER } from "../actions/player";
 import uuidv4 from 'uuid'
 
-const initialState = {
- people: [{ id: uuidv4(), name: "Mesut Ozil" }]
-};
-
-function returnNameObj(name) {
+function newPlayer(name) {
  return {
   id: uuidv4(),
-  name
+  name,
+  life_total: 20,
+  poison_counters: 0,
+  background_class: "player background-pane neutral",
+  history: []
  };
 }
-const reducer = (state = initialState, action) => {
+
+const reducer = (state = { players: [] }, action) => {
  switch (action.type) {
   case ADD_PLAYER:
-   return {
-    ...state,
-    people: [...state.people, returnNameObj(action.data)]
-   };
+    return {
+      ...state,
+      players: [...state.players, newPlayer(action.player_name)]
+    }
+  case UPDATE_PLAYER:
+    return {
+      ...state,
+      players: state.players.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            ...action.updates
+          }
+        } else {
+          return player;
+        }
+      })
+    }
+  case REMOVE_PLAYER:
+    return {
+      ...state,
+      players: state.players.filter(({ id }) => id !== action.id)
+    }
   default:
    return state;
  }

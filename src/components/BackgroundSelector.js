@@ -40,7 +40,6 @@ class BackgroundSelector extends React.Component {
   };
 
   selectBg(e) {
-    //this.setState({ selectedValue: e.target.value });
     this.props.callbackToParent(e.target.value);
   };
 
@@ -49,7 +48,6 @@ class BackgroundSelector extends React.Component {
       {this.state.optionsArr.map( theOption => <option key={theOption.value} value={theOption.value}> {theOption.title} </option>) }
     </select>
   }
-
 }
 
 export default BackgroundSelector;

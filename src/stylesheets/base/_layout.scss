@@ -36,12 +36,3 @@ button {
   bottom: 0;
   background: #eee;
 }
-
-header {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  button {
-    margin-bottom: 0;
-  }
-}
