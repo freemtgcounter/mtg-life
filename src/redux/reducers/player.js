@@ -1,4 +1,4 @@
-import { ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER } from "../actions/player";
+import { ADD_PLAYER, REMOVE_PLAYER, UPDATE_PLAYER, EDH_DAMAGE, ADD_EDH } from "../actions/player";
 import uuidv4 from 'uuid'
 
 function newPlayer(name) {
@@ -8,7 +8,8 @@ function newPlayer(name) {
   life_total: 20,
   poison_counters: 0,
   background_class: "player background-pane neutral",
-  history: []
+  history: [],
+  edhDmg: []
  };
 }
 
@@ -38,6 +39,49 @@ const reducer = (state = { players: [] }, action) => {
       ...state,
       players: state.players.filter(({ id }) => id !== action.id)
     }
+  case ADD_EDH:
+    return {
+      ...state,
+      players: state.players.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            edhDmg: [...player.edhDmg, {
+              pid: action.pid,
+              oid: action.oid,
+              damage: 0
+            }]
+          }
+        } else {
+          return player;
+        }
+      })
+    }
+  case EDH_DAMAGE:
+    return ({
+      ...state,
+      players: state.players.map((player) => {
+        if (player.id === action.id) {
+          return {
+            ...player,
+            edhDmg: player.edhDmg.map((dmg) => {
+              if (dmg.pid === action.pid) {
+                const prevDmg = dmg.damage
+                action.damage += prevDmg
+                return {
+                  ...dmg,
+                  ...action
+                }
+              } else {
+                return dmg
+              }
+            })
+          }
+        } else {
+          return player;
+        }
+      })
+    })
   default:
    return state;
  }

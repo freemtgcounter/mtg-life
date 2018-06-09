@@ -1,9 +1,23 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { updatePlayer, removePlayer } from "../redux/actions/player"
+import { updatePlayer, removePlayer} from "../redux/actions/player"
 import BackgroundSelector from "./BackgroundSelector";
+import CommanderDamage from "./CommanderDamage";
+import uuidv4 from 'uuid'
 
 class Player extends React.Component {
+
+  // constructor(props) {
+  //   super(props);
+  //
+  //   // {this.props.reduxState.players.players.map(p => {
+  //   //   if (p.id !== this.props.player.id) {
+  //   //     this.props.dispatch(addEdh({pid: this.props.player.id, oid: p.id}));
+  //   //   }
+  //   // })}
+  //
+  // }
+  //
 
   handleChange = (e) => {
     this.setState({inputValue: e.target.value});
@@ -40,11 +54,10 @@ class Player extends React.Component {
   };
 
   removePlayer = (e) => {
-    this.props.dispatch(removePlayer(this.props.player.id));
+    this.props.dispatch(removePlayer( this.props.player.id));
   }
 
   setBackground = (bgClass) => {
-    console.log(bgClass);
     this.props.dispatch(updatePlayer( this.props.player.id,
       {
         background_class: "player background-pane "+bgClass
@@ -58,45 +71,47 @@ class Player extends React.Component {
     );
 
     return (
-        <div className={this.props.player.background_class}>
-          <div className="mana large"></div>
-          <div className="player_info">
-            <input type="string" placeholder="player" className="player_name" value={this.props.player.name} onChange={this.onNameChange}/>
-            <button onClick={this.removePlayer}>x</button>
-            <h1>{this.props.player.life_total}</h1>
-            <section className="life_buttons">
-              <button onClick={this.adjustLifeTotal(-5)}>-5</button>
-              <button onClick={this.adjustLifeTotal(-1)}>-1</button>
-              <button onClick={this.adjustLifeTotal(1)}>+1</button>
-              <button onClick={this.adjustLifeTotal(5)}>+5</button>
-            </section>
-            <section className="poison_buttons">
-              <button onClick={this.adjustPoisonCounters(-1)}>-1</button>
-              <span className="poison_count">{this.props.player.poison_counters}<span className="mana poison"></span></span>
-              <button onClick={this.adjustPoisonCounters(1)}>+1</button>
-            </section>
-            <BackgroundSelector callbackToParent={this.setBackground} />
-          </div>
-          <section className="edh_damage">
-            <div className="edh_player">
-              <div className="edh_player-name">Gustrodamus</div>
-              <div className="edh_player-dmg">
-                <button>-1</button>
-                <span className="edh_player-dmg-count">10</span>
-                <button>+1</button>
-              </div>
-            </div>
-            <div className="edh_player">
-              <div className="edh_player-name">Gustrodamus</div>
-              <div className="edh_player-dmg">
-                <button>-1</button>
-                <span className="edh_player-dmg-count">10</span>
-                <button>+1</button>
-              </div>
-            </div>
+      <div className={this.props.player.background_class}>
+
+        <div className="mana large"></div>
+
+        <div className="player_info">
+          <input type="string" placeholder="player" className="player_name" value={this.props.player.name} onChange={this.onNameChange}/>
+          <button onClick={this.removePlayer}>x</button>
+          <h1>{this.props.player.life_total}</h1>
+
+          <section className="life_buttons">
+            <button onClick={this.adjustLifeTotal(-5)}>-5</button>
+            <button onClick={this.adjustLifeTotal(-1)}>-1</button>
+            <button onClick={this.adjustLifeTotal(1)}>+1</button>
+            <button onClick={this.adjustLifeTotal(5)}>+5</button>
           </section>
-          <section className="player_log">{history_list.reverse()}</section>
+
+          <section className="poison_buttons">
+            <button onClick={this.adjustPoisonCounters(-1)}>-1</button>
+            <span className="poison_count">{this.props.player.poison_counters}<span className="mana poison"></span></span>
+            <button onClick={this.adjustPoisonCounters(1)}>+1</button>
+          </section>
+
+          <BackgroundSelector callbackToParent={this.setBackground} />
+
+          <section className="edh_damage">
+            {this.props.reduxState.players.players.map(p => {
+              if (p.id !== this.props.player.id) {
+                return (
+                  <CommanderDamage key={uuidv4()} player={this.props.player} opponent_id={p.id} />
+                )
+              } else {
+                return false
+              }
+            })}
+          </section>
+
         </div>
+
+        <section className="player_log">{history_list.reverse()}</section>
+
+      </div>
     )
   }
 }

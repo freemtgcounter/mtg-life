@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import Player from "./Player";
 import { addPlayer } from "../redux/actions/player.js";
 
 class Header extends Component {

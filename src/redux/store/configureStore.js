@@ -17,6 +17,7 @@ const configureStore = () => {
   );
 
   store.subscribe(() => {
+    console.log("store updated:")
     console.log(store.getState());
     saveState(store.getState());
   });
