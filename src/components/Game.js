@@ -8,8 +8,13 @@ class Game extends Component {
 
     const player_count = "pcount-"+this.props.reduxState.players.players.length
 
+    let main_classes = "";
+    main_classes += this.props.reduxState.game.controlToggle ? 'controls-open ' : '';
+    main_classes += this.props.reduxState.game.showEdhDamage ? 'edh-on ' : '';
+    main_classes += this.props.reduxState.game.playerConfig ? 'config-on' : 'config-off';
+
     return (
-      <main>
+      <main className={main_classes}>
         <Header />
         <section id="players" className={player_count}>
           {this.props.reduxState.players.players.map(p => {

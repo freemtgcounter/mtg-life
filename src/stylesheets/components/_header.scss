@@ -1,13 +1,103 @@
+
+.edh-on .edhDmgToggle,
+.config-on .player-config {
+  background: white;
+}
+
+
 header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  max-width: 100vw;
-  height: 50px;
+  bottom: 28px;
+  display: inline;
+  right: 0;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  overflow:hidden;
+  max-height: 3.1rem;
+  max-width: 3.3rem;
+  height: 100vh;
+  z-index: 9999;
+  transition: max-height 400ms ease-out, max-width 400ms ease-out;
+
+  & > div {
+    min-width: 3rem;
+    min-height: 3rem;
+    position: relative;
+    padding: 1.6rem;
+    height: 100%;
+    max-width: 3rem;
+    max-height: 3rem;
+    background: rgba(235,235,235,.9);
+    border-left: 1px solid rgba(0,0,0,.2);
+    border-top: 1px solid rgba(0,0,0,.2);
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    bottom: 1px solid rgba(0,0,0,.2);
+    border-radius: 4px 0 4px 4px;
+    transition: max-height 300ms linear, max-width 200ms linear;
+  }
+
+  .controls-open & {
+    max-height: 12rem;
+    max-width: 17rem;
+  }
+
+  .controls-open & > div {
+    max-width: 20rem;
+    max-height: 11rem;
+  }
+
+  .controls-open & #game-settings {
+    display: flex;
+  }
+
+  .controls-open &.open {
+    max-height: 30rem;
+    max-width: 90rem;
+    > div {
+      max-height: 29rem;
+      max-width: 90rem;
+    }
+    .game-settings {background: white;}
+  }
+
+  nav {
+    margin-bottom: 2rem;
+    display: none;
+    .controls-open & {
+      display: block;
+    }
+  }
+
+  #game-settings {
+    align-items: center;
+    flex-direction: row;
+    display: none;
+  }
+  .controls-toggle {
+    top: -1rem;
+    left: -1rem;
+    border-radius: 2rem;
+    height: 3rem;
+    width: 3rem;
+    position:absolute;
+    background: rgba(235,235,235,.9);
+    &:after {
+      position: relative;
+      content: '+';
+      top: -.92rem;
+      left: -.29rem;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #999;
+    }
+    .controls-open &:after {
+      left:-.7rem;
+      content: '—';
+    }
+    &:hover:after {
+      color: black;
+    }
+  }
 
   p {margin: 0 2rem;}
   input {margin: 0 2rem 0 0;}

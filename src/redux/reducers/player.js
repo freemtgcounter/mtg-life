@@ -43,7 +43,7 @@ const reducer = (state = { players: [] }, action) => {
     return {
       ...state,
       players: state.players.map((player) => {
-        if (player.id === action.id) {
+        if (player.id === action.pid) {
           return {
             ...player,
             edhDmg: [...player.edhDmg, {
@@ -61,12 +61,14 @@ const reducer = (state = { players: [] }, action) => {
     return ({
       ...state,
       players: state.players.map((player) => {
-        if (player.id === action.id) {
+        if (player.id === action.pid) {
           return {
             ...player,
             edhDmg: player.edhDmg.map((dmg) => {
-              if (dmg.pid === action.pid) {
+              if (dmg.oid === action.oid) {
                 const prevDmg = dmg.damage
+                console.log(dmg);
+                console.log(action);
                 action.damage += prevDmg
                 return {
                   ...dmg,

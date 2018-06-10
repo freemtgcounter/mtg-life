@@ -1,19 +1,35 @@
 
 $transparent_background: rgba(210,210,210,.5);
 
+.pconfig-item {
+  opacity: 0;
+  transition: max-height 300ms linear, opacity 300ms linear;
+  overflow: hidden;
+}
+
+.config-off .pconfig-item {
+  pointer-events: none;
+  max-height: 0;
+}
+
+.config-on .pconfig-item {
+  opacity: 1;
+  max-height: 6rem;
+}
+
 #players {
   display: flex;
   margin: 0 auto;
   flex-wrap: nowrap;
   overflow-x: auto;
-  margin: 52px auto 0;
 }
 
 .player {
+  padding-top: 2.5rem;
   position: relative;
   display: grid;
   grid-template-rows: auto auto 1fr;
-  height: calc(100vh - 67px);
+  height: calc(100vh - 20px);
   min-width: 30rem;
   max-width: 90rem;
 
@@ -38,12 +54,34 @@ $transparent_background: rgba(210,210,210,.5);
     margin: 0 auto;
   }
 
+  .player_name {
+    pointer-events: none;
+    .config-on & {
+      cursor: pointer;
+      pointer-events: all;
+      background: white;
+    }
+  }
+
   .player_log {
     overflow-y: auto;
     p {
       font-size: 1.3rem;
       margin-bottom: .3rem;
     }
+  }
+
+  .remove_player {
+    position: absolute;
+    top: 9rem;
+    right: 1rem;
+    background-color: white;
+  }
+
+  .bg-selector {
+    position: absolute;
+    top: 9rem;
+    left: 1rem;
   }
 
   .background-pane {
@@ -110,6 +148,15 @@ $transparent_background: rgba(210,210,210,.5);
     left: .35em;
     top: .3em;
   }
+}
+
+.edh_damage {
+  transition: max-height 200ms ease-out;
+  max-height: 0;
+  overflow: hidden;
+}
+.edh-on .edh_damage {
+  max-height: 30rem;
 }
 
 .edh_player {

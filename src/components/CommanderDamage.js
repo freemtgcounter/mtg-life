@@ -1,27 +1,29 @@
 import React from 'react';
 import { connect } from "react-redux";
+import uuidv4 from 'uuid'
 import { adjustEdhDamage } from "../redux/actions/player.js";
 
 class CommanderDamage extends React.Component {
 
-  addDamage = e => {
-    this.props.dispatch(adjustEdhDamage(() => {e.target.value}));
-    console.log(e.target.value)
+  addDamage = dmg => {
+    this.props.dispatch(adjustEdhDamage(dmg));
   };
 
   render() {
     const p = this.props.player
-    const opponent_id = this.props.opponent_id
+    const opponent_id = this.props.opponent.id
+    const opponent_name = this.props.opponent.name
+
     return (
       p.edhDmg.map(d => {
-        if (d.opponent_id === opponent_id) {
+        if (d.oid === opponent_id) {
           return (
-            <div key={this.props.key} className="edh_player">
-              <div className="edh_player-name">{p.name}</div>
+            <div key={uuidv4()} className="edh_player">
+              <div className="edh_player-name">{opponent_name}</div>
               <div className="edh_player-dmg">
                 <button> - 1 </button>
                 <span className="edh_player-dmg-count">{d.damage}</span>
-                <button value={{pid: this.props.player_id, oid: p.id, damage: 1}} onClick={this.addDamage}> + 1 </button>
+                <button onClick={() => {this.addDamage({pid: p.id, oid: opponent_id, damage: 1})}}> + 1 </button>
               </div>
             </div>
           )

@@ -1,26 +1,37 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { updatePlayer, removePlayer} from "../redux/actions/player"
+import { updatePlayer, removePlayer, addEdh } from "../redux/actions/player"
 import BackgroundSelector from "./BackgroundSelector";
 import CommanderDamage from "./CommanderDamage";
 import uuidv4 from 'uuid'
 
 class Player extends React.Component {
 
-  // constructor(props) {
-  //   super(props);
-  //
-  //   // {this.props.reduxState.players.players.map(p => {
-  //   //   if (p.id !== this.props.player.id) {
-  //   //     this.props.dispatch(addEdh({pid: this.props.player.id, oid: p.id}));
-  //   //   }
-  //   // })}
-  //
-  // }
-  //
+  constructor(props) {
+    super(props);
 
-  handleChange = (e) => {
-    this.setState({inputValue: e.target.value});
+    this.props.reduxState.players.players.map(p => {
+      if (p.id !== this.props.player.id) {
+        if (this.props.player.edhDmg.filter(dmg => (dmg.oid === p.id)).length <= 0) {
+          return (this.props.dispatch(addEdh({pid: p.id, oid: this.props.player.id})))
+        } else {
+          return false;
+        }
+      } else {
+        this.props.reduxState.players.players.map(op => {
+          if (op.id !== this.props.player.id) {
+            if (this.props.player.edhDmg.filter(dmg => (dmg.oid === op.id)).length <= 0) {
+              return ( this.props.dispatch(addEdh({pid: this.props.player.id, oid: op.id})) )
+            } else {
+              return false;
+            }
+          } else {
+            return false;
+          }
+        })
+        return false
+      }
+    })
   }
 
   adjustLifeTotal = param => e => {
@@ -32,8 +43,8 @@ class Player extends React.Component {
         life_total: new_life,
         history: [...this.props.player.history, life_object]
       }
-    ));
-  };
+    ))
+  }
 
   adjustPoisonCounters = param => e => {
     const old_life = this.props.player.poison_counters
@@ -67,7 +78,7 @@ class Player extends React.Component {
 
   render() {
     const history_list = this.props.player.history.map((history_step) =>
-      <p>({history_step.old_life}) {history_step.life_event > 0 ? "+" : ""}{history_step.life_event}</p>
+      <p key={uuidv4()}>({history_step.old_life}) {history_step.life_event > 0 ? "+" : ""}{history_step.life_event}</p>
     );
 
     return (
@@ -77,8 +88,9 @@ class Player extends React.Component {
 
         <div className="player_info">
           <input type="string" placeholder="player" className="player_name" value={this.props.player.name} onChange={this.onNameChange}/>
-          <button onClick={this.removePlayer}>x</button>
+          <button className="remove_player pconfig-item" onClick={this.removePlayer}>x</button>
           <h1>{this.props.player.life_total}</h1>
+          <BackgroundSelector callbackToParent={this.setBackground} />
 
           <section className="life_buttons">
             <button onClick={this.adjustLifeTotal(-5)}>-5</button>
@@ -93,13 +105,12 @@ class Player extends React.Component {
             <button onClick={this.adjustPoisonCounters(1)}>+1</button>
           </section>
 
-          <BackgroundSelector callbackToParent={this.setBackground} />
 
           <section className="edh_damage">
             {this.props.reduxState.players.players.map(p => {
               if (p.id !== this.props.player.id) {
                 return (
-                  <CommanderDamage key={uuidv4()} player={this.props.player} opponent_id={p.id} />
+                  <CommanderDamage key={uuidv4()} player={this.props.player} opponent={p} />
                 )
               } else {
                 return false

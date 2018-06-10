@@ -44,7 +44,7 @@ class BackgroundSelector extends React.Component {
   };
 
   render () {
-    return <select onChange={this.selectBg.bind(this)}>
+    return <select className="pconfig-item bg-selector" onChange={this.selectBg.bind(this)}>
       {this.state.optionsArr.map( theOption => <option key={theOption.value} value={theOption.value}> {theOption.title} </option>) }
     </select>
   }

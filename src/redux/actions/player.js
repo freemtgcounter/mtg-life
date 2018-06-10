@@ -9,10 +9,10 @@ export const addPlayer = (player_name) => ({
   player_name
 });
 
-export const addEdh = (pid, oid) => ({
+export const addEdh = (dmg) => ({
   type: ADD_EDH,
-  pid,
-  oid
+  pid: dmg.pid,
+  oid: dmg.oid
 });
 
 export const removePlayer = (id) => ({
@@ -26,9 +26,9 @@ export const updatePlayer = (id, updates) => ({
   updates
 });
 
-export const adjustEdhDamage = (action) => ({
+export const adjustEdhDamage = (dmg) => ({
   type: EDH_DAMAGE,
-  pid: action.id,
-  oid: action.pid,
-  damage: action.damage
+  pid: dmg.pid,
+  oid: dmg.oid,
+  damage: dmg.damage
 });
