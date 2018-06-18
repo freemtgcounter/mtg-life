@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { addPlayer } from "../redux/actions/player.js";
-import { toggleSettings, togglePlayerConfig, controlsToggle, edhDamageToggle } from "../redux/actions/game.js";
+import { addPlayer, resetPlayers, addEdh } from "../redux/actions/player.js";
+import { toggleSettings, togglePlayerConfig, controlsToggle, edhDamageToggle, newGame } from "../redux/actions/game.js";
 
 class Header extends Component {
 
@@ -20,6 +20,34 @@ class Header extends Component {
     this.props.dispatch(controlsToggle());
   }
 
+  newGameButtonClick = () => {
+    if (window.confirm('Really start a new game?')) {
+      this.props.dispatch(newGame());
+      this.props.dispatch(resetPlayers());
+      this.props.reduxState.players.players.map(p => {
+        this.props.reduxState.players.players.map(op => {
+          if (p.id !== op.id) {
+            return (this.props.dispatch(addEdh({pid: p.id, oid: op.id})))
+          }
+        })
+      })
+    }
+  }
+
+  new40LifeButtonClick = () => {
+    if (window.confirm('Really start a new game?')) {
+      this.props.dispatch(newGame());
+      this.props.dispatch(resetPlayers(40));
+      this.props.reduxState.players.players.map(p => {
+        this.props.reduxState.players.players.map(op => {
+          if (p.id !== op.id) {
+            return (this.props.dispatch(addEdh({pid: p.id, oid: op.id})))
+          }
+        })
+      })
+    }
+  }
+
   playerConfigButtonClick = () => {
     this.props.dispatch(togglePlayerConfig());
   }
@@ -34,7 +62,7 @@ class Header extends Component {
           <div>
             <button className="controls-toggle" onClick={this.controlsToggleButtonClick}></button>
             <nav>
-              <button className="player-config" onClick={this.playerConfigButtonClick}>player config</button><br />
+              <button className="player-config" onClick={this.playerConfigButtonClick}>player config</button>
               <button className="game-settings" onClick={this.settingsToggleButtonClick}>game settings</button>
             </nav>
             <section id="game-settings">
@@ -46,6 +74,11 @@ class Header extends Component {
               <div>
                 <p>Show Commander Damage?</p>
                 <button className="edhDmgToggle" onClick={this.edhDamageToggleButtonClick}>Toggle</button>
+              </div>
+              <div>
+                <p>Start new game</p>
+                <button className="edhDmgToggle" onClick={this.newGameButtonClick}>20 Life</button>
+                <button className="edhDmgToggle" onClick={this.new40LifeButtonClick}>40 Life</button>
               </div>
             </section>
           </div>

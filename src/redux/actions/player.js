@@ -3,6 +3,7 @@ export const REMOVE_PLAYER = 'REMOVE_PLAYER';
 export const UPDATE_PLAYER = 'UPDATE_PLAYER';
 export const EDH_DAMAGE = 'EDH_DAMAGE';
 export const ADD_EDH = 'ADD_EDH';
+export const RESET_PLAYERS = 'RESET_PLAYERS';
 
 export const addPlayer = (player_name) => ({
   type: ADD_PLAYER,
@@ -18,6 +19,11 @@ export const addEdh = (dmg) => ({
 export const removePlayer = (id) => ({
   type: REMOVE_PLAYER,
   id
+});
+
+export const resetPlayers = (life) => ({
+  type: RESET_PLAYERS,
+  life: life ? life : 20
 });
 
 export const updatePlayer = (id, updates) => ({

@@ -16,7 +16,7 @@ export default (state = gameReducerDefaultState, action) => {
     case NEW_GAME:
       return {
         ...state,
-        startDate: action.startDate
+        startDate: moment().startOf('minute')
       }
     case TOGGLE_SETTINGS:
       return {

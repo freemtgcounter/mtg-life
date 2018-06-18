@@ -5,14 +5,17 @@ import BackgroundSelector from "./BackgroundSelector";
 import CommanderDamage from "./CommanderDamage";
 import uuidv4 from 'uuid'
 
+
+
 class Player extends React.Component {
 
   constructor(props) {
+
     super(props);
 
     this.props.reduxState.players.players.map(p => {
       if (p.id !== this.props.player.id) {
-        if (this.props.player.edhDmg.filter(dmg => (dmg.oid === p.id)).length <= 0) {
+        if (this.props.player.edhDmg.filter(dmg => (dmg.oid === p.id)).length === 0) {
           return (this.props.dispatch(addEdh({pid: p.id, oid: this.props.player.id})))
         } else {
           return false;
@@ -20,7 +23,7 @@ class Player extends React.Component {
       } else {
         this.props.reduxState.players.players.map(op => {
           if (op.id !== this.props.player.id) {
-            if (this.props.player.edhDmg.filter(dmg => (dmg.oid === op.id)).length <= 0) {
+            if (this.props.player.edhDmg.filter(dmg => (dmg.oid === op.id)).length === 0) {
               return ( this.props.dispatch(addEdh({pid: this.props.player.id, oid: op.id})) )
             } else {
               return false;
@@ -99,28 +102,33 @@ class Player extends React.Component {
             <button onClick={this.adjustLifeTotal(5)}>+5</button>
           </section>
 
-          <section className="poison_buttons">
-            <button onClick={this.adjustPoisonCounters(-1)}>-1</button>
-            <span className="poison_count">{this.props.player.poison_counters}<span className="mana poison"></span></span>
-            <button onClick={this.adjustPoisonCounters(1)}>+1</button>
+          <section className="player_body">
+            <section className="player_body-aux">
+
+              <section className="poison_buttons">
+                <button onClick={this.adjustPoisonCounters(-1)}>-1</button>
+                <span className="poison_count">{this.props.player.poison_counters}<span className="mana poison"></span></span>
+                <button onClick={this.adjustPoisonCounters(1)}>+1</button>
+              </section>
+
+              <section className="edh_damage">
+                {this.props.reduxState.players.players.map(p => {
+                  if (p.id !== this.props.player.id) {
+                    return (
+                      <CommanderDamage key={uuidv4()} player={this.props.player} opponent={p} />
+                    )
+                  } else {
+                    return false
+                  }
+                })}
+              </section>
+
+            </section>
+
+            <section className="player_log">{history_list.reverse()}</section>
+
           </section>
-
-
-          <section className="edh_damage">
-            {this.props.reduxState.players.players.map(p => {
-              if (p.id !== this.props.player.id) {
-                return (
-                  <CommanderDamage key={uuidv4()} player={this.props.player} opponent={p} />
-                )
-              } else {
-                return false
-              }
-            })}
-          </section>
-
         </div>
-
-        <section className="player_log">{history_list.reverse()}</section>
 
       </div>
     )
