@@ -7,7 +7,7 @@
 
 header {
   position: fixed;
-  bottom: 28px;
+  bottom: 0;
   display: inline;
   right: 0;
   padding-left: 1rem;
@@ -48,10 +48,10 @@ header {
 
 
   .controls-open &.open {
-    max-height: 30rem;
+    max-height: 28rem;
     max-width: 70rem;
     > div {
-      max-height: 29rem;
+      max-height: 27rem;
       max-width: 70rem;
     }
     .game-settings {background: white;}
@@ -86,20 +86,12 @@ header {
     border-radius: 2rem;
     height: 3rem;
     width: 3rem;
+    padding: .25rem;
     position:absolute;
     background: rgba(235,235,235,.9);
-    &:after {
-      position: relative;
-      content: '+';
-      top: -.92rem;
-      left: -.29rem;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #999;
-    }
-    .controls-open &:after {
-      left:-.7rem;
-      content: '—';
+    border: 1px solid rgba(0,0,0,.2);
+    .controls-open & {
+      background: white;
     }
     &:hover:after {
       color: black;
@@ -108,5 +100,5 @@ header {
 
   p {margin: 0 2rem;}
   input {margin: 0 2rem 0 0;}
-  button {margin-bottom: 0;}
+  button {margin: 0 .5rem;}
 }

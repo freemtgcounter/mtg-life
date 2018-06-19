@@ -8,6 +8,7 @@
   .player_body-aux:before,
   .player_log:before,
   .edh_damage:before { background: rgba(0,0,0,.1); }
+  .config-on &.player .player_name { color: white; }
 }
 
 %has-mana {

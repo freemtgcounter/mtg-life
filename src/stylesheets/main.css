@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @import url(vendor/normalize.css);
 @import url(vendor/skeleton.css);
 @import url(vendor/mana.css);
@@ -11,7 +10,7 @@ html {
   @media (min-width: 500px) {
     html {
       font-size: 62.5%; } }
-  @media (min-width: 1000px) {
+  @media (min-width: 1300px) {
     html {
       font-size: 70%; } }
 
@@ -58,7 +57,7 @@ button {
 
 header {
   position: fixed;
-  bottom: 28px;
+  bottom: 0;
   display: inline;
   right: 0;
   padding-left: 1rem;
@@ -91,10 +90,10 @@ header {
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
   .controls-open header.open {
-    max-height: 30rem;
+    max-height: 28rem;
     max-width: 70rem; }
     .controls-open header.open > div {
-      max-height: 29rem;
+      max-height: 27rem;
       max-width: 70rem; }
     .controls-open header.open .game-settings {
       background: white; }
@@ -125,19 +124,12 @@ header {
     border-radius: 2rem;
     height: 3rem;
     width: 3rem;
+    padding: .25rem;
     position: absolute;
-    background: rgba(235, 235, 235, 0.9); }
-    header .controls-toggle:after {
-      position: relative;
-      content: '+';
-      top: -.92rem;
-      left: -.29rem;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #999; }
-    .controls-open header .controls-toggle:after {
-      left: -.7rem;
-      content: '—'; }
+    background: rgba(235, 235, 235, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.2); }
+    .controls-open header .controls-toggle {
+      background: white; }
     header .controls-toggle:hover:after {
       color: black; }
   header p {
@@ -145,7 +137,7 @@ header {
   header input {
     margin: 0 2rem 0 0; }
   header button {
-    margin-bottom: 0; }
+    margin: 0 .5rem; }
 
 .pconfig-item {
   opacity: 0;
@@ -172,8 +164,11 @@ header {
   padding-top: .4rem;
   position: relative;
   height: 100vh;
-  min-width: 30rem;
+  min-width: 26rem;
   width: calc(100vw * (1/5)); }
+  @media (min-width: 1300px) {
+    .player {
+      min-width: 30rem; } }
   .pcount-1 .player {
     width: 100vw; }
   .pcount-2 .player {
@@ -185,37 +180,48 @@ header {
   .player + .player {
     border-left: solid 1px rgba(155, 155, 155, 0.7); }
   .player h1 {
-    font-size: 6rem;
+    font-size: 4rem;
     font-weight: bold;
     margin-bottom: .4rem; }
+    @media (min-width: 1300px) {
+      .player h1 {
+        font-size: 6rem; } }
   .player .player_info {
     margin: 0 auto;
     width: 100%;
+    max-width: 54rem;
+    position: relative;
     display: grid;
-    height: calc(100vh - 27px);
+    height: calc(100vh);
     grid-template-rows: auto auto auto 1fr; }
   .player .player_name {
-    pointer-events: none; }
+    pointer-events: none;
+    background: rgba(255, 255, 255, 0.1);
+    font-weight: bold;
+    padding: .1rem 0 .2rem; }
     .config-on .player .player_name {
       cursor: pointer;
       pointer-events: all;
       background: white;
       color: black; }
+    @media (min-width: 1300px) {
+      .player .player_name {
+        font-size: 3rem; } }
   .player .player_body {
     width: 100%;
     justify-content: center;
     display: flex;
     overflow-y: auto;
-    margin: 1vw auto 0;
-    padding: 0;
-    border-top: 0.2rem solid rgba(200, 200, 200, 0.2); }
+    margin: 0 auto;
+    padding: 1rem 0 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1); }
   .player .player_body-aux {
     width: calc(50% - 2rem);
     max-width: 25rem;
     margin-right: 1rem; }
     .player .player_body-aux:before {
       content: "poison";
-      border-bottom: 0.2rem solid rgba(200, 200, 200, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
       text-transform: uppercase;
       font-size: 70%;
       background: rgba(255, 255, 255, 0.1);
@@ -225,18 +231,22 @@ header {
       margin-bottom: 1rem; }
   .player .remove_player {
     position: absolute;
-    top: 9rem;
+    top: 6rem;
     right: 1rem;
     background-color: white; }
   .player .bg-selector {
     position: absolute;
-    top: 9rem;
+    top: 6rem;
     left: 1rem;
     color: black; }
   .player .background-pane {
     position: relative;
     padding-top: .5rem;
-    border: dotted 1px #ccc; }
+    border: solid 1px rgba(255, 255, 255, 0.4); }
+  .player .log_bg {
+    padding: 1rem 0;
+    background: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15); }
   .player .player_log {
     width: calc(50% - 2rem);
     max-width: 25rem;
@@ -246,34 +256,40 @@ header {
       margin-bottom: .3rem; }
     .player .player_log:before {
       content: "history";
-      border-bottom: 0.2rem solid rgba(200, 200, 200, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.4);
       text-transform: uppercase;
       font-size: 70%;
       background: rgba(255, 255, 255, 0.1);
       padding: .3rem;
       display: block;
-      top: -3rem;
-      margin-bottom: 1rem; }
+      top: -3rem; }
   .player button {
     font-size: 1.6rem;
     line-height: 1;
     background: rgba(210, 210, 210, 0.5);
-    padding: .1rem 1.4rem .25rem; }
+    padding: 0;
+    min-width: 3rem;
+    min-height: 2rem;
+    margin-bottom: 0; }
+    @media (min-width: 1300px) {
+      .player button {
+        padding: .1rem 1.4rem .25rem; } }
   .player .life_buttons {
     display: flex;
-    max-width: 38rem;
     width: 100%;
+    max-width: 54rem;
     margin: 0 auto;
     padding: 1rem;
-    justify-content: space-between; }
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4); }
     .player .life_buttons button {
       font-size: 2rem;
       width: 23%;
       max-width: 7rem;
       font-weight: bold;
-      border: dotted 2px rgba(182, 255, 182, 0.5); }
+      border: solid 2px rgba(216, 216, 216, 0.6); }
       .player .life_buttons button:nth-of-type(1), .player .life_buttons button:nth-of-type(2) {
-        border: dotted 2px rgba(255, 140, 140, 0.5); }
+        border: solid 1px rgba(0, 0, 0, 0.1); }
   .player input {
     width: 100%;
     z-index: 100;
@@ -286,10 +302,6 @@ header {
     border: solid 1px transparent; }
     .player input:focus {
       border: dotted 1px grey; }
-  .player .player_name {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 1rem 0 .7rem;
-    font-weight: bold; }
 
 .poison_buttons {
   display: flex;
@@ -309,10 +321,11 @@ header {
   max-height: 0;
   overflow: hidden;
   position: relative;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   margin-top: 2rem; }
   .edh_damage:before {
     content: "commanders";
-    border-bottom: 0.2rem solid rgba(200, 200, 200, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
     font-size: 70%;
     background: rgba(255, 255, 255, 0.1);
@@ -321,25 +334,34 @@ header {
     top: -3rem; }
 
 .edh-on .edh_damage {
-  max-height: 30rem; }
+  max-height: calc(100vh - 10rem); }
 
 .edh_player {
-  border: 1px solid rgba(210, 210, 210, 0.5);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   background: rgba(255, 255, 255, 0.1);
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem;
   white-space: nowrap;
   overflow: hidden; }
-  .edh_player .edh_player-name {
-    padding-top: .5rem; }
-  .edh_player .edh_player-dmg button {
-    padding: .5rem 1rem;
-    line-height: 1;
-    height: auto;
-    margin: .5rem;
-    font-size: 1.25rem; }
+  .edh_player .edh_player-dmg {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; }
+    .edh_player .edh_player-dmg button {
+      padding: .5rem;
+      letter-spacing: 0;
+      line-height: 1;
+      height: auto;
+      font-size: 1.25rem;
+      margin-bottom: 0; }
+  .edh_player .edh_player-dmg-count {
+    display: inline-block;
+    padding: 0 1rem;
+    font-size: 1.55rem;
+    font-weight: bold; }
 
 .neutral {
   background: linear-gradient(to bottom, #d0d0d0 0%, #f3f3f3 20%); }
@@ -356,6 +378,8 @@ header {
   .black .player_log:before,
   .black .edh_damage:before {
     background: rgba(0, 0, 0, 0.1); }
+  .config-on .player.black .player_name {
+    color: white; }
 
 .black .mana.large, .blue .mana.large, .green .mana.large, .red .mana.large, .white .mana.large, .colorless .mana.large {
   display: block;

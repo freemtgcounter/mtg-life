@@ -68,7 +68,9 @@ class Player extends React.Component {
   };
 
   removePlayer = (e) => {
-    this.props.dispatch(removePlayer( this.props.player.id));
+    if (window.confirm('Really delete player '+this.props.player.id+'?')) {
+      this.props.dispatch(removePlayer( this.props.player.id));
+    }
   }
 
   setBackground = (bgClass) => {
@@ -125,7 +127,11 @@ class Player extends React.Component {
 
             </section>
 
-            <section className="player_log">{history_list.reverse()}</section>
+            <section className="player_log">
+              <div className="log_bg">
+                {history_list.reverse()}
+              </div>
+            </section>
 
           </section>
         </div>
