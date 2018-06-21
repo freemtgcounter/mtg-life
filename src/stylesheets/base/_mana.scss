@@ -1,33 +1,22 @@
 .mana {
-    background-image: url('../../svg/mana.svg');
+    background-image: url('../svg/mana.svg');
     background-repeat: no-repeat;
     background-size: auto 700%;
     display: inline-block;
     border-radius: 50%;
 }
+
 .poison {
-    background-image: url('../../svg/poison.svg');
+    background-image: url('../svg/poison.svg');
     background-size: 103%;
     background-color: rgba(33,255,15,.3);
+    background-repeat: no-repeat;
     height: 1.3em;
     width: 1.3em;
+    display: inline-block;
+    border-radius: 50%;
 }
-.mana.small {
-    height: 1em;
-    width: 1em;
-}
-.mana.medium {
-    height: 2em;
-    width: 2em;
-}
-.mana.large {
-    display: none;
-    height: 20rem;
-    width: 20rem;
-    position: absolute;
-    top: 35rem;
-    pointer-events: none;
-}
+
 .mana.s0 { background-position: 0 0; }
 .mana.s1 { background-position: 11.1% 0; }
 .mana.s2 { background-position: 22.2% 0; }

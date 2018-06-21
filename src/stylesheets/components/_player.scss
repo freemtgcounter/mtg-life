@@ -42,8 +42,18 @@ $super_transparent_background: rgba(255,255,255,.1);
   height: 100vh;
   min-width: 26rem;
   width: calc(100vw * (1/5));
+  overflow: hidden;
   @include breakpoint(large) {
     min-width: 30rem;
+  }
+
+  & > .mana {
+    height: calc(20vw + 20rem);
+    width: calc(20vw + 20rem);
+    position: absolute;
+    top: calc(30vh);
+    pointer-events: none;
+    display: none;
   }
 
   .pcount-1 & {
@@ -85,9 +95,10 @@ $super_transparent_background: rgba(255,255,255,.1);
 
   .player_name {
     pointer-events: none;
-    background: $super_transparent_background;
+    background: linear-gradient(to bottom, rgba(255,255,255,0) 30%, $super_transparent_background 100%);
     font-weight: bold;
     padding: .1rem 0 .2rem;
+    border-top: 0;
     .config-on & {
       cursor: pointer;
       pointer-events: all;
@@ -106,7 +117,7 @@ $super_transparent_background: rgba(255,255,255,.1);
     display: flex;
     overflow-y: auto;
     margin: 0 auto;
-    padding: 1rem 0 0;
+    padding: 1rem 0;
     border-top: 1px solid rgba(0,0,0,.1);
   }
 
@@ -142,9 +153,14 @@ $super_transparent_background: rgba(255,255,255,.1);
   }
 
   .log_bg {
-    padding: 1rem 0;
     background: $super_transparent_background;
     border-bottom: 1px solid rgba(0,0,0,.15);
+    & p:first-child {
+      padding-top: 1rem;
+    }
+    & p:last-child {
+      padding-bottom: 1rem;
+    }
   }
 
   .player_log {
@@ -153,7 +169,8 @@ $super_transparent_background: rgba(255,255,255,.1);
     margin-left: 1rem;
     p {
       font-size: 1.3rem;
-      margin-bottom: .3rem;
+      padding-bottom: .3rem;
+      margin-bottom: 0;
     }
     &:before {
       content: "history";
@@ -167,6 +184,8 @@ $super_transparent_background: rgba(255,255,255,.1);
     background: $transparent_background;
     padding: 0;
     min-width: 3rem;
+    max-width: 5rem;
+    width: 100%;
     min-height: 2rem;
     margin-bottom: 0;
     @include breakpoint(large) {
@@ -214,12 +233,14 @@ $super_transparent_background: rgba(255,255,255,.1);
 .poison_buttons {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .poison_count {
   display: inline-block;
   min-width: 3em;
   padding: 0 .5em;
+  white-space: nowrap;
   .poison {
     position: relative;
     left: .35em;
@@ -232,7 +253,6 @@ $super_transparent_background: rgba(255,255,255,.1);
   max-height: 0;
   overflow: hidden;
   position: relative;
-  border-bottom: 1px solid rgba(0,0,0,.15);
   margin-top: 2rem;
   &:before {
     content: "commanders";
@@ -241,24 +261,30 @@ $super_transparent_background: rgba(255,255,255,.1);
 }
 .edh-on .edh_damage {
   max-height: calc(100vh - 10rem);
+  border-bottom: 1px solid rgba(0,0,0,.15);
 }
 
 .edh_player {
   border-top: 1px solid rgba(255,255,255,.2);
   background: rgba(255,255,255,.1);
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
+  padding: 1rem .5rem;
   white-space: nowrap;
   overflow: hidden;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   .edh_player-name {
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .edh_player-dmg {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    max-width: 7rem;
+    @include breakpoint(medium) {
+      max-width: 9rem;
+    }
     button {
       padding: .5rem;
       letter-spacing: 0;
@@ -266,11 +292,14 @@ $super_transparent_background: rgba(255,255,255,.1);
       height: auto;
       font-size: 1.25rem;
       margin-bottom: 0;
+      display: inline;
+      width: auto;
     }
   }
   .edh_player-dmg-count {
     display: inline-block;
-    padding: 0 1rem;
+    padding: 0 .75rem;
+    line-height: 1;
     font-size: 1.55rem;
     font-weight: bold;
   }

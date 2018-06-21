@@ -5,8 +5,6 @@ import BackgroundSelector from "./BackgroundSelector";
 import CommanderDamage from "./CommanderDamage";
 import uuidv4 from 'uuid'
 
-
-
 class Player extends React.Component {
 
   constructor(props) {
@@ -68,7 +66,7 @@ class Player extends React.Component {
   };
 
   removePlayer = (e) => {
-    if (window.confirm('Really delete player '+this.props.player.id+'?')) {
+    if (window.confirm('Really delete '+this.props.player.name+'?')) {
       this.props.dispatch(removePlayer( this.props.player.id));
     }
   }
@@ -109,7 +107,7 @@ class Player extends React.Component {
 
               <section className="poison_buttons">
                 <button onClick={this.adjustPoisonCounters(-1)}>-1</button>
-                <span className="poison_count">{this.props.player.poison_counters}<span className="mana poison"></span></span>
+                <span className="poison_count">{this.props.player.poison_counters}<span className="poison"></span></span>
                 <button onClick={this.adjustPoisonCounters(1)}>+1</button>
               </section>
 

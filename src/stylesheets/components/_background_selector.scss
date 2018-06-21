@@ -1,76 +1,203 @@
 .neutral {background: linear-gradient(to bottom, #d0d0d0 0%, #f3f3f3 20%);}
 
-%dark-background {
+@mixin dark-background {
   input {background: #444; z-index: 100;}
   color: #eee;
   .poison {background-color: greenyellow; }
-  &.player .player_name,
+  &.player .player_name {background: transparent; }
   .player_body-aux:before,
   .player_log:before,
   .edh_damage:before { background: rgba(0,0,0,.1); }
   .config-on &.player .player_name { color: white; }
+  .edh_player {background: rgba(0,0,0,.15);}
+  .player_log p,
+  .edh_player {background: rgba(0,0,0,.4);color: white;}
 }
 
-%has-mana {
-  .mana.large {
-    display: block;
+@mixin bright-backboards {
+  &.player .edh_damage:before,
+  &.player .player_body-aux:before,
+  &.player .player_log:before {
+    background: rgba(255,255,255,.6);
+    color: black;
+  }
+}
+
+@mixin has-mana {
+  .mana {
+    display: inline-block;
     background-position: 66.6% 33.3%;
     opacity: .14;
     z-index: 1;
     left: 50%;
     transform: translateX(-50%);
+    opacity: .05;
   }
 }
 
-
 .black {
-  @extend %dark-background;
-  @extend %has-mana;
+  @include dark-background;
+  @include has-mana;
   background: linear-gradient(to bottom, black 0%, #333339 70%);
 
-  .mana.large { background-position: 66.6% 33.3%;}
+  .mana { background-position: 66.6% 33.3%;}
 }
 
 .blue {
   background: linear-gradient(to bottom, #89beff 0%, #005fa8 100%);
-
-  @extend %has-mana;
-  .mana.large {
+  @include has-mana;
+  .mana {
     background-position: 55.5% 33.3%;
     mix-blend-mode: overlay;
   }
 }
-.green {
-  background: linear-gradient(to bottom, #c9de96 0%, #8ab66b 44%, #398235 100%);
-  @extend %has-mana;
-  .mana.large {
-    background-position: 88.8% 33.3%;
-    mix-blend-mode: overlay;
+
+.colorless {
+  background: linear-gradient(to bottom, #eeeeee 0%, #bbbbbb 100%);
+  @include has-mana;
+  @include bright-backboards;
+  .mana {
+    background-position: 11.1% 33.3%;
+    mix-blend-mode: multiply;
+    opacity: .1;
   }
 }
+
+.green {
+  background: linear-gradient(to bottom, #c9de96 0%, #8ab66b 44%, #398235 100%);
+  @include has-mana;
+  .mana {
+    background-position: 88.8% 33.3%;
+    mix-blend-mode: overlay;
+    opacity: .12;
+  }
+}
+
 .red {
   background: linear-gradient(to bottom, #ffaaaa 0%, red 100%);
-  @extend %has-mana;
-  .mana.large {
+  @include has-mana;
+  .mana {
     background-position: 77.7% 33.3%;
     mix-blend-mode: overlay;
   }
 }
+
 .white {
   background: white;
-  @extend %has-mana;
-  .mana.large {
+  @include has-mana;
+  .mana {
     background-position: 44.4% 33.3%;
     mix-blend-mode: darken;
-    opacity: .05;
   }
 }
-.colorless {
-  background: linear-gradient(to bottom, #eeeeee 0%, #bbbbbb 100%);
-  @extend %has-mana;
-  .mana.large {
-    background-position: 11.1% 33.3%;
-    mix-blend-mode: overlay;
-    opacity: 1;
+
+.bluewhite {
+    &.player .player_name {background: transparent; }
+    background: linear-gradient(to bottom, white 0%, #89beff 100%);
+    @include bright-backboards;
+    @include has-mana;
+    .mana {
+      background-position: 0 50%;
+      mix-blend-mode: multiply;
+    }
+}
+
+.blackgreen {
+  @include dark-background;
+  &.player .player_name {color: rgba(120,140,120,.9)}
+  background: linear-gradient(to bottom, black 0%, #c9de96 100%);
+  @include has-mana;
+  .mana {
+    background-position: 55.5% 50%;
+    mix-blend-mode: multiply;
+    opacity: .15;
+  }
+}
+
+.blackred {
+  @include dark-background;
+  @include has-mana;
+  .mana {
+    background-position: 44.4% 50%;
+    opacity: .07;
+  }
+  &.player .player_name {text-shadow: 0 1px 2px red}
+  background: linear-gradient(to bottom, black 30%, #cc0000 100%);
+}
+
+.blackwhite {
+  background: linear-gradient(to bottom, white 0%, black 100%);
+  @include bright-backboards;
+  @include has-mana;
+  .mana {
+    background-position: 11.1% 50%;
+    opacity: .07;
+  }
+  .player_log p,
+  .edh_player {background: rgba(0,0,0,.4);color: white;}
+}
+
+.blueblack {
+  background: linear-gradient(to bottom, #005fa8 0%, black 80%);
+  @include bright-backboards;
+  @include dark-background;
+  @include has-mana;
+  .mana {
+    background-position: 22.2% 50%;
+    opacity: .07;
+    mix-blend-mode: dodge;
+  }
+}
+
+.greenwhite {
+  @include bright-backboards;
+  &.player .player_name {background: transparent; }
+  background: linear-gradient(to bottom, #398235 0%, white 100%);
+  @include has-mana;
+  .mana {
+    background-position: 88.8% 50%;
+    opacity: .07;
+  }
+}
+.greenblue {
+  &.player .player_name {background: transparent; }
+  background: linear-gradient(to bottom, #398235 0%, #89beff 100%);
+  @include has-mana;
+  .mana {
+    background-position: 99.9% 50%;
+    opacity: .07;
+  }
+}
+
+.redgreen {
+  @include bright-backboards;
+  &.player .player_name {background: transparent; }
+  background: linear-gradient(to bottom, #cc0000 30%, #398235 70%);
+  @include has-mana;
+  .mana {
+    background-position: 77.7% 50%;
+    opacity: .07;
+  }
+}
+.redwhite {
+  &.player .player_name {background: transparent; }
+  background: linear-gradient(to bottom, #f32 0%, white 100%);
+  @include bright-backboards;
+  @include has-mana;
+  .mana {
+    opacity: .12;
+    background-position: 66.6% 50%;
+  }
+}
+
+.redblue {
+  &.player .player_name {background: transparent; }
+  background: linear-gradient(to bottom, #005fa8 30%, red 70%);
+  @include dark-background;
+  @include bright-backboards;
+  @include has-mana;
+  .mana {
+    opacity: .12;
+    background-position: 33.3% 50%;
   }
 }

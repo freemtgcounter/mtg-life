@@ -4,10 +4,9 @@
   background: white;
 }
 
-
 header {
   position: fixed;
-  bottom: 0;
+  bottom: 1rem;
   display: inline;
   right: 0;
   padding-left: 1rem;
@@ -50,9 +49,17 @@ header {
   .controls-open &.open {
     max-height: 28rem;
     max-width: 70rem;
+    @include breakpoint(lowheight) {
+      max-height: calc(170px + 2rem);
+      max-width: auto;
+    }
     > div {
       max-height: 27rem;
       max-width: 70rem;
+      @include breakpoint(lowheight) {
+        max-height: 170px;
+        max-width: auto;
+      }
     }
     .game-settings {background: white;}
     nav button {margin: 0 1rem;}
@@ -78,6 +85,11 @@ header {
     opacity: 0;
     transition: opacity 200ms linear;
     div {margin: 1rem 0;}
+
+    @include breakpoint(lowheight) {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
   }
 
   .controls-toggle {
@@ -99,6 +111,6 @@ header {
   }
 
   p {margin: 0 2rem;}
-  input {margin: 0 2rem 0 0;}
+  input {margin: 0 1rem 0 0;}
   button {margin: 0 .5rem;}
 }
