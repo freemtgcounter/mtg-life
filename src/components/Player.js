@@ -49,8 +49,9 @@ class Player extends React.Component {
 
   adjustPoisonCounters = param => e => {
     const old_life = this.props.player.poison_counters
+    const n = (param<0?"":"+") + param
     const new_life = old_life + param
-    const life_object = { old_life: this.props.player.poison_counters+"*", life_event: param+"*" }
+    const life_object = { old_life: this.props.player.poison_counters, life_event: n+" poison" }
     this.props.dispatch(updatePlayer( this.props.player.id,
       {
         poison_counters: new_life,

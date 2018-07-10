@@ -3,7 +3,7 @@
     @media (orientation: landscape) { @content ;}
   }
   @if $point == lowheight {
-    @media (max-height: 460px) { @content ;}
+    @media (max-height: 290px) { @content ;}
   }
   @if $point == medium {
     @media (min-width: 500px)  { @content ; }

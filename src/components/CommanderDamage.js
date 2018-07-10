@@ -5,7 +5,7 @@ import { adjustEdhDamage } from "../redux/actions/player.js";
 
 class CommanderDamage extends React.Component {
 
-  addDamage = dmg => {
+  edhDamage = dmg => {
     this.props.dispatch(adjustEdhDamage(dmg));
   };
 
@@ -21,9 +21,9 @@ class CommanderDamage extends React.Component {
             <div key={uuidv4()} className="edh_player">
               <div className="edh_player-name">{opponent_name}</div>
               <div className="edh_player-dmg">
-                <button> - 1 </button>
+                <button onClick={() => {this.edhDamage({pid: p.id, oid: opponent_id, damage: -1})}}> - 1 </button>
                 <span className="edh_player-dmg-count">{d.damage}</span>
-                <button onClick={() => {this.addDamage({pid: p.id, oid: opponent_id, damage: 1})}}> + 1 </button>
+                <button onClick={() => {this.edhDamage({pid: p.id, oid: opponent_id, damage: 1})}}> + 1 </button>
               </div>
             </div>
           )

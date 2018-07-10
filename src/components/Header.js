@@ -75,7 +75,7 @@ class Header extends Component {
             <section id="game-settings">
               <div>
                 <p>Add a New Player</p>
-                <input  ref={(el) => this.nameFieldRef = el} type="text" onChange={this.handleChange} />
+                <input ref={(el) => this.nameFieldRef = el} type="text" onChange={this.handleChange} />
                 <button onClick={this.handlePlayerAdd}>Add</button>
               </div>
               <div>

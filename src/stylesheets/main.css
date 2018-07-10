@@ -270,14 +270,14 @@ header {
   .controls-open header.open {
     max-height: 28rem;
     max-width: 70rem; }
-    @media (max-height: 460px) {
+    @media (max-height: 290px) {
       .controls-open header.open {
         max-height: calc(170px + 2rem);
-        max-width: auto; } }
+        max-width: 100%; } }
     .controls-open header.open > div {
       max-height: 27rem;
       max-width: 70rem; }
-      @media (max-height: 460px) {
+      @media (max-height: 290px) {
         .controls-open header.open > div {
           max-height: 170px;
           max-width: auto; } }
@@ -303,8 +303,8 @@ header {
     opacity: 0;
     transition: opacity 200ms linear; }
     header #game-settings div {
-      margin: 1rem 0; }
-    @media (max-height: 460px) {
+      margin: .5rem auto; }
+    @media (max-height: 290px) {
       header #game-settings {
         flex-direction: row;
         flex-wrap: wrap; } }
@@ -327,7 +327,9 @@ header {
   header input {
     margin: 0 1rem 0 0; }
   header button {
-    margin: 0 .5rem; }
+    margin: 0 .5rem;
+    line-height: 1;
+    height: 32px; }
 
 .pconfig-item {
   opacity: 0;

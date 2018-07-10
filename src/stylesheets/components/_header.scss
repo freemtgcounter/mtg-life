@@ -51,7 +51,7 @@ header {
     max-width: 70rem;
     @include breakpoint(lowheight) {
       max-height: calc(170px + 2rem);
-      max-width: auto;
+      max-width: 100%;
     }
     > div {
       max-height: 27rem;
@@ -84,7 +84,9 @@ header {
     align-items: center;
     opacity: 0;
     transition: opacity 200ms linear;
-    div {margin: 1rem 0;}
+    div {
+      margin: .5rem auto;
+    }
 
     @include breakpoint(lowheight) {
       flex-direction: row;
@@ -112,5 +114,9 @@ header {
 
   p {margin: 0 2rem;}
   input {margin: 0 1rem 0 0;}
-  button {margin: 0 .5rem;}
+  button {
+    margin: 0 .5rem;
+    line-height: 1;
+    height: 32px;
+  }
 }
