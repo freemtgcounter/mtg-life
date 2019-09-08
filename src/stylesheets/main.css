@@ -202,7 +202,7 @@ body {
   body h2 {
     font-size: 2rem; }
   body h3, body h4, body h5, body h6, body p {
-    font-size: 1rem; }
+    font-size: 1.6rem; }
 
 * {
   box-sizing: border-box; }
@@ -494,9 +494,11 @@ header {
       width: 23%;
       max-width: 7rem;
       font-weight: bold;
-      border: solid 2px rgba(216, 216, 216, 0.6); }
+      border: solid 2px rgba(255, 255, 255, 0.7); }
+      .player .life_buttons button span {
+        font-size: 120%; }
       .player .life_buttons button:nth-of-type(1), .player .life_buttons button:nth-of-type(2) {
-        border: solid 1px rgba(0, 0, 0, 0.1); }
+        border: solid 1px rgba(0, 0, 0, 0.5); }
   .player input {
     width: 100%;
     z-index: 100;

@@ -97,10 +97,10 @@ class Player extends React.Component {
           <BackgroundSelector callbackToParent={this.setBackground} />
 
           <section className="life_buttons">
-            <button onClick={this.adjustLifeTotal(-5)}>-5</button>
-            <button onClick={this.adjustLifeTotal(-1)}>-1</button>
-            <button onClick={this.adjustLifeTotal(1)}>+1</button>
-            <button onClick={this.adjustLifeTotal(5)}>+5</button>
+            <button onClick={this.adjustLifeTotal(-5)}><span>-</span>5</button>
+            <button onClick={this.adjustLifeTotal(-1)}><span>-</span>1</button>
+            <button onClick={this.adjustLifeTotal(1)}><span>+</span>1</button>
+            <button onClick={this.adjustLifeTotal(5)}><span>+</span>5</button>
           </section>
 
           <section className="player_body">

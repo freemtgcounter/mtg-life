@@ -27,10 +27,12 @@ class Header extends Component {
     if (window.confirm('Really start a new game?')) {
       this.props.dispatch(newGame());
       this.props.dispatch(resetPlayers());
-      this.props.reduxState.players.players.map(p => {
+      this.props.reduxState.players.players.forEach(p => {
         this.props.reduxState.players.players.map(op => {
           if (p.id !== op.id) {
             return (this.props.dispatch(addEdh({pid: p.id, oid: op.id})))
+          } else {
+            return true
           }
         })
       })
