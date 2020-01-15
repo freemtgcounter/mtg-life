@@ -233,7 +233,57 @@ button {
 .config-on .player-config {
   background: white; }
 
-header {
+.game-active #welcome {
+  display: none; }
+
+.game-active header nav {
+  display: block; }
+
+.controls-open.game-active header {
+  max-height: 12rem;
+  max-width: 30rem; }
+
+.controls-open.game-active header > div {
+  max-width: 40rem;
+  max-height: 11rem;
+  background: rgba(235, 235, 235, 0.9);
+  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
+
+.controls-open.game-active header.open {
+  max-height: 34rem;
+  max-width: 70rem; }
+  @media (max-height: 290px) {
+    .controls-open.game-active header.open {
+      max-height: calc(170px + 2rem);
+      max-width: 100%; } }
+  .controls-open.game-active header.open > div {
+    max-height: 34rem;
+    max-width: 70rem; }
+    @media (max-height: 290px) {
+      .controls-open.game-active header.open > div {
+        max-height: 170px;
+        max-width: auto; } }
+  .controls-open.game-active header.open .game-settings {
+    background: white; }
+  .controls-open.game-active header.open nav button {
+    margin: 0 1rem; }
+  .controls-open.game-active header.open #game-settings {
+    opacity: 1; }
+
+.game-active nav {
+  margin-bottom: 2rem;
+  display: none; }
+
+.game-active.controls-open nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 50rem;
+  margin: 0 auto; }
+
+.game-active header {
   position: fixed;
   bottom: 1rem;
   display: inline;
@@ -246,69 +296,19 @@ header {
   height: 100vh;
   z-index: 9999;
   transition: max-height 300ms ease-out, max-width 300ms ease-out; }
-  header > div {
-    min-width: 3rem;
-    min-height: 3rem;
-    position: relative;
-    padding: 1.6rem;
-    height: 100%;
-    max-width: 3rem;
-    max-height: 3rem;
-    bottom: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 4px 0 4px 4px;
-    transition: background-color 200ms linear, max-height 300ms ease-out, max-width 300ms ease-out; }
-  .controls-open header {
-    max-height: 12rem;
-    max-width: 17rem; }
-  .controls-open header > div {
-    max-width: 40rem;
-    max-height: 11rem;
-    background: rgba(235, 235, 235, 0.9);
-    border-left: 1px solid rgba(0, 0, 0, 0.2);
-    border-top: 1px solid rgba(0, 0, 0, 0.2);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
-  .controls-open header.open {
-    max-height: 28rem;
-    max-width: 70rem; }
-    @media (max-height: 290px) {
-      .controls-open header.open {
-        max-height: calc(170px + 2rem);
-        max-width: 100%; } }
-    .controls-open header.open > div {
-      max-height: 27rem;
-      max-width: 70rem; }
-      @media (max-height: 290px) {
-        .controls-open header.open > div {
-          max-height: 170px;
-          max-width: auto; } }
-    .controls-open header.open .game-settings {
-      background: white; }
-    .controls-open header.open nav button {
-      margin: 0 1rem; }
-    .controls-open header.open #game-settings {
-      opacity: 1; }
-  header nav {
-    margin-bottom: 2rem;
-    display: none; }
-    .controls-open header nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      max-width: 50rem;
-      margin: 0 auto; }
-  header #game-settings {
+  .game-active header #game-settings {
     display: flex;
     flex-direction: column;
     align-items: center;
     opacity: 0;
     transition: opacity 200ms linear; }
-    header #game-settings div {
+    .game-active header #game-settings div {
       margin: .5rem auto; }
     @media (max-height: 290px) {
-      header #game-settings {
+      .game-active header #game-settings {
         flex-direction: row;
         flex-wrap: wrap; } }
-  header .controls-toggle {
+  .game-active header .controls-toggle {
     top: -1rem;
     left: -1rem;
     border-radius: 2rem;
@@ -318,18 +318,30 @@ header {
     position: absolute;
     background: rgba(235, 235, 235, 0.9);
     border: 1px solid rgba(0, 0, 0, 0.2); }
-    .controls-open header .controls-toggle {
+    .controls-open .game-active header .controls-toggle {
       background: white; }
-    header .controls-toggle:hover:after {
+    .game-active header .controls-toggle:hover:after {
       color: black; }
-  header p {
+  .game-active header p {
     margin: 0 2rem; }
-  header input {
+  .game-active header input {
     margin: 0 1rem 0 0; }
-  header button {
+  .game-active header button {
     margin: 0 .5rem;
     line-height: 1;
     height: 32px; }
+
+.game-active header > div {
+  min-width: 3rem;
+  min-height: 3rem;
+  position: relative;
+  padding: 1.6rem;
+  height: 100%;
+  max-width: 3rem;
+  max-height: 3rem;
+  bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px 0 4px 4px;
+  transition: background-color 200ms linear, max-height 300ms ease-out, max-width 300ms ease-out; }
 
 .pconfig-item {
   opacity: 0;
@@ -972,3 +984,30 @@ header {
   .redblue .mana {
     opacity: .12;
     background-position: 33.3% 50%; }
+
+.welcome .new,
+.welcome .edh-damange,
+.welcome .start-new {
+  display: none; }
+
+.welcome #welcome {
+  margin: 0 auto;
+  max-width: 80vw; }
+  .welcome #welcome h1 {
+    margin-top: 2rem; }
+
+.welcome header {
+  color: black; }
+  .welcome header .controls-toggle {
+    cursor: default; }
+    .welcome header .controls-toggle svg {
+      width: 4rem;
+      height: 4rem;
+      display: block;
+      margin: 0 auto; }
+    .welcome header .controls-toggle path {
+      fill: black; }
+    .welcome header .controls-toggle:hover {
+      cursor: default; }
+  .welcome header nav {
+    display: none; }

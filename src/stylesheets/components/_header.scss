@@ -4,7 +4,62 @@
   background: white;
 }
 
-header {
+.game-active #welcome {
+  display: none;
+}
+
+.game-active header nav {
+  display: block;
+}
+
+.controls-open.game-active header {
+  max-height: 12rem;
+  max-width: 30rem;
+}
+
+.controls-open.game-active header > div {
+  max-width: 40rem;
+  max-height: 11rem;
+  background: rgba(235,235,235,.9);
+  border-left: 1px solid rgba(0,0,0,.2);
+  border-top: 1px solid rgba(0,0,0,.2);
+  border-bottom: 1px solid rgba(0,0,0,.2);
+}
+
+.controls-open.game-active header.open {
+  max-height: 34rem;
+  max-width: 70rem;
+  @include breakpoint(lowheight) {
+    max-height: calc(170px + 2rem);
+    max-width: 100%;
+  }
+  > div {
+    max-height: 34rem;
+    max-width: 70rem;
+    @include breakpoint(lowheight) {
+      max-height: 170px;
+      max-width: auto;
+    }
+  }
+  .game-settings {background: white;}
+  nav button {margin: 0 1rem;}
+  #game-settings {opacity: 1;}
+}
+
+.game-active nav {
+  margin-bottom: 2rem;
+  display: none;
+}
+
+.game-active.controls-open nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+.game-active header {
   position: fixed;
   bottom: 1rem;
   display: inline;
@@ -17,66 +72,6 @@ header {
   height: 100vh;
   z-index: 9999;
   transition: max-height 300ms ease-out, max-width 300ms ease-out;
-
-  & > div {
-    min-width: 3rem;
-    min-height: 3rem;
-    position: relative;
-    padding: 1.6rem;
-    height: 100%;
-    max-width: 3rem;
-    max-height: 3rem;
-    bottom: 1px solid rgba(0,0,0,.2);
-    border-radius: 4px 0 4px 4px;
-    transition: background-color 200ms linear, max-height 300ms ease-out, max-width 300ms ease-out;
-  }
-
-  .controls-open & {
-    max-height: 12rem;
-    max-width: 17rem;
-  }
-
-  .controls-open & > div {
-    max-width: 40rem;
-    max-height: 11rem;
-    background: rgba(235,235,235,.9);
-    border-left: 1px solid rgba(0,0,0,.2);
-    border-top: 1px solid rgba(0,0,0,.2);
-    border-bottom: 1px solid rgba(0,0,0,.2);
-  }
-
-
-  .controls-open &.open {
-    max-height: 28rem;
-    max-width: 70rem;
-    @include breakpoint(lowheight) {
-      max-height: calc(170px + 2rem);
-      max-width: 100%;
-    }
-    > div {
-      max-height: 27rem;
-      max-width: 70rem;
-      @include breakpoint(lowheight) {
-        max-height: 170px;
-        max-width: auto;
-      }
-    }
-    .game-settings {background: white;}
-    nav button {margin: 0 1rem;}
-    #game-settings {opacity: 1;}
-  }
-
-  nav {
-    margin-bottom: 2rem;
-    display: none;
-    .controls-open & {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      max-width: 50rem;
-      margin: 0 auto;
-    }
-  }
 
   #game-settings {
     display: flex;
@@ -119,4 +114,17 @@ header {
     line-height: 1;
     height: 32px;
   }
+}
+
+.game-active header > div {
+  min-width: 3rem;
+  min-height: 3rem;
+  position: relative;
+  padding: 1.6rem;
+  height: 100%;
+  max-width: 3rem;
+  max-height: 3rem;
+  bottom: 1px solid rgba(0,0,0,.2);
+  border-radius: 4px 0 4px 4px;
+  transition: background-color 200ms linear, max-height 300ms ease-out, max-width 300ms ease-out;
 }

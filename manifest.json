@@ -3,8 +3,8 @@
   "name": "mtgcounter.life",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "src": "static/media/splash.png",
+      "sizes": "512x512",
       "type": "image/x-icon"
     }
   ],

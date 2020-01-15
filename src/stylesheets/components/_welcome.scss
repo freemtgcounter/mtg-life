@@ -1,0 +1,46 @@
+
+.welcome {
+  .new,
+  .edh-damange,
+  .start-new {
+    display: none;
+  }
+}
+
+.welcome #welcome {
+
+  margin: 0 auto;
+  max-width: 80vw;
+
+  h1 {
+    margin-top: 2rem;
+  }
+}
+
+.welcome header {
+
+  color: black;
+
+  .controls-toggle {
+    cursor: default;
+
+    svg {
+      width: 4rem;
+      height: 4rem;
+      display: block;
+      margin: 0 auto;
+    }
+
+    path {
+      fill: black;
+    }
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  nav {
+    display: none;
+  }
+
+}
