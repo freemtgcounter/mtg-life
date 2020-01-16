@@ -90,7 +90,13 @@ $super_transparent_background: rgba(255,255,255,.1);
     position: relative;
     display: grid;
     height: calc(100vh);
-    grid-template-rows: auto auto auto 1fr;
+    grid-template-rows: auto auto auto auto 1fr;
+
+    label {
+      visibility: hidden;
+      position: absolute;
+    }
+
   }
 
   .player_name {

@@ -4,6 +4,8 @@ class BackgroundSelector extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log(this);
+
     this.state = {
       selectedValue: '',
       optionsArr: [
@@ -84,9 +86,13 @@ class BackgroundSelector extends React.Component {
   };
 
   render () {
-    return <select className="pconfig-item bg-selector" onChange={this.selectBg.bind(this)}>
-      {this.state.optionsArr.map( theOption => <option key={theOption.value} value={theOption.value}> {theOption.title} </option>) }
-    </select>
+    const label_id = 'background-selector-'+this.props.player_id
+    return <div>
+      <label htmlFor={label_id}>Select background</label>
+      <select id={label_id} className="pconfig-item bg-selector" onChange={this.selectBg.bind(this)}>
+        {this.state.optionsArr.map( theOption => <option key={theOption.value} value={theOption.value}> {theOption.title} </option>) }
+      </select>
+    </div>
   }
 }
 

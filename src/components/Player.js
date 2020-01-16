@@ -81,6 +81,8 @@ class Player extends React.Component {
   };
 
   render() {
+    const player_id = this.props.player.id
+    const name_id = 'player-name-' + player_id
     const history_list = this.props.player.history.map((history_step) =>
       <p key={uuidv4()}>({history_step.old_life}) {history_step.life_event > 0 ? "+" : ""}{history_step.life_event}</p>
     );
@@ -91,10 +93,12 @@ class Player extends React.Component {
         <div className="mana large"></div>
 
         <div className="player_info">
-          <input type="string" placeholder="player" className="player_name" value={this.props.player.name} onChange={this.onNameChange}/>
+          <label htmlFor={name_id}>Player Name</label>
+          <input type="string" placeholder="player" className="player_name" id={name_id} value={this.props.player.name} onChange={this.onNameChange}/>
+
           <button className="remove_player pconfig-item" onClick={this.removePlayer}>x</button>
           <h1>{this.props.player.life_total}</h1>
-          <BackgroundSelector callbackToParent={this.setBackground} />
+          <BackgroundSelector player_id={player_id} callbackToParent={this.setBackground} />
 
           <section className="life_buttons">
             <button onClick={this.adjustLifeTotal(-5)}><span>-</span>5</button>
